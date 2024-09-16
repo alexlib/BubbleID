@@ -1,10 +1,9 @@
 # BubbleID
 This framework is made for use in analyzing boiling images. It combines tracking, segmentation, and classification models and is trained on manually labeled pool boiling data. 
 It is used for departure classification, velocity interface prediction, bubble statistics extraction.
-<p>
-<img src="Data.jpg" alt="Example plots generated from framework" width="50%" style="display:inline-block; vertical-align:top;"/>
-<img src="velocityFigure.jpg" alt="Example Interface Velocity Figures" width="50%" style="display:inline-block; vertical-align:top;"/>
-</p>
+
+<img src="Data.jpg" alt="Example plots generated from framework" width="90%" />
+
 This github is from the work presented here: [**BubbleID:A deep learning framework for bubble interface dynamics analysis**](https://pubs.aip.org/aip/jap/article/136/1/014902/3300686/BubbleID-A-deep-learning-framework-for-bubble)
 
 ## Preliminary Setup:
@@ -24,7 +23,9 @@ This github is from the work presented here: [**BubbleID:A deep learning framewo
   1. Plots.ipynb
      This provides codes for generating figures 
   3. Interface_Velocity.ipynb
-     This file provides the code for determing and ploting the interface velocity of a single bubble. 
+     This file provides the code for determing and ploting the interface velocity of a single bubble.
+<img src="velocityFigure.jpg" alt="Example Interface Velocity Figures" width="50%" />
+ 
 ## Train your own model
 You will need generate a yolo dataset. We did this through the use of labelme and converted the generated json files to yolo datasets using the code found here: 
 Two files are provided to allow for training both the segmentation and classification model.
