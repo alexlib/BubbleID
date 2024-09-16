@@ -13,7 +13,7 @@ This github is from the work presented here: [**BubbleID:A deep learning framewo
 3. Download OCsort Code [**here**](https://github.com/noahcao/OC_SORT/tree/master/trackers/ocsort_tracker)
 
 ## How to use
-* It is recommended to use the Segmentation_and_Tracking code unless detatchment is important due to the significant increase in computational time. To use this code follow the following guide:
+* It is recommended to use the Segmentation_and_Tracking code unless detatchment is important due to the significant increase in computational time. To use this code:
   1. Save boiling video as a .avi file and save each frame as a .jpg in a seperate file
   2. Open the Segmentation_and_Tracking.ipynb file and find the cell with file paths
   3. Update the extension variable to be a string of what you want the data to be saved as (for example: extension ='V1')
