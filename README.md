@@ -25,8 +25,10 @@ This github is from the work presented here: [**BubbleID:A deep learning framewo
      This provides codes for generating figures 
   3. Interface_Velocity.ipynb
      This file provides the code for determing and ploting the interface velocity of a single bubble.
-<img src="velocityFigure.jpg" alt="Example Interface Velocity Figures" width="55%" />
- 
+<p align="center">
+  <img src="velocityFigure.jpg" alt="Example Interface Velocity Figures" width="55%" />
+</p>
+
 ## Train your own model
 You will need generate a yolo dataset. We did this through the use of labelme and converted the generated json files to yolo datasets using the code found here: 
 Two files are provided to allow for training both the segmentation and classification model.
