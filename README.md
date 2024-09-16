@@ -7,7 +7,7 @@ This github is from the work presented here: [**BubbleID:A deep learning framewo
 
 ## Preliminary Setup:
 1. Clone this github repo
-2. Download the pretrained models here:
+2. Download the pretrained models [**here**](https://drive.google.com/drive/folders/1eYMW9USX0ZRKDDR8WR__xRAlfMNwCIw7?usp=sharing):
 3. Download OCsort Code [**here**](https://github.com/noahcao/OC_SORT/tree/master/trackers/ocsort_tracker)
 
 ## How to use
