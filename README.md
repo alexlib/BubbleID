@@ -1,5 +1,5 @@
 <div align="center">  
-  <img src="./bubbleidheader.png" alt="Logo" style="width: 85%; max-width: 100%;">
+  <img src="./Images/bubbleidheader.png" alt="Logo" style="width: 85%; max-width: 100%;">
 </div>
 
 [![boldv](https://img.shields.io/badge/tag-v1.0.0-blue)](https://github.com/cldunlap73/BubbleID/tree/v1.0.0)
@@ -12,7 +12,7 @@
 This package is for analyzing pool boiling images and is from the paper: [**BubbleID:A deep learning framework for bubble interface dynamics analysis**](https://pubs.aip.org/aip/jap/article/136/1/014902/3300686/BubbleID-A-deep-learning-framework-for-bubble). It combines tracking, segmentation, and classification models and is trained on manually labeled pool boiling data. It is used for departure classification, velocity interface prediction, bubble statistics extraction.
 
 <p align="center">
-  <img src="Data.jpg" alt="Example plots generated from framework" width="80%" />
+  <img src="./Images/Data.jpg" alt="Example plots generated from framework" width="80%" />
 </p>
 
 * This is an updated version of BubbleID for the past version please see here.
@@ -72,5 +72,5 @@ Two files are provided to allow for training both the segmentation and classific
 2. TrainModel.ipynb
 
 3. <p align="center">
-  <img src="velocityFigure.jpg" alt="Example Interface Velocity Figures" width="65%" />
+  <img src="./Images/velocityFigure.jpg" alt="Example Interface Velocity Figures" width="65%" />
 </p>
