@@ -5,13 +5,44 @@
 ---
 
 
-This framework is made for use in analyzing boiling images. It combines tracking, segmentation, and classification models and is trained on manually labeled pool boiling data. 
-It is used for departure classification, velocity interface prediction, bubble statistics extraction.
+This package is for analyzing boiling images and is from the paper: [**BubbleID:A deep learning framework for bubble interface dynamics analysis**](https://pubs.aip.org/aip/jap/article/136/1/014902/3300686/BubbleID-A-deep-learning-framework-for-bubble). It combines tracking, segmentation, and classification models and is trained on manually labeled pool boiling data. It is used for departure classification, velocity interface prediction, bubble statistics extraction.
+
+* This is an updated version of BubbleID for the past version please see here.
+
+## Installation:
+Several packages are needed to 
+
+```bash
+pip install
+```
+## Use Cases
+The BubbleID Framework can be used for analyzing pool boiling images to obtain bubble statistics. Examples of these are shown below:
 <p align="center">
-  <img src="Data.jpg" alt="Example plots generated from framework" width="80%" />
+  <img src="Data.jpg" alt="Example plots generated from framework" width="75%" />
+</p>
+It can also be used for obtaining the novel interface velocity for a specific bubble as shown below:
+<p align="center">
+  <img src="velocityFigure.jpg" alt="Example Interface Velocity Figures" width="65%" />
 </p>
 
-This github is from the work presented here: [**BubbleID:A deep learning framework for bubble interface dynamics analysis**](https://pubs.aip.org/aip/jap/article/136/1/014902/3300686/BubbleID-A-deep-learning-framework-for-bubble)
+## Using the BubbleID Framework:
+The BubbleID framework has pretrained models for our in lab pool boiling images. This section goes over how to use these models to analyze image data. These models may need finetuning with your own data. More on this is provided later. 
+
+|Model|Weights|Description|
+|----|-------|----------|
+|InstanceSegmentation|Link|Model weights for the instance segmentation model.|
+|Classification|Link|Model weights for the departure classification model.|
+
+For the model both an avi video and corresponding .jpg images of each frame must be provided.
+
+## Training your own model:
+1. Annotate image data, Lableme was used for our dataset.
+2. Convert labelme dataset to yolo format
+3. Run training
+4. See Using the BubbleID Framework but use your new model weights
+   
+## Tutorials
+For convience, tutorials are provided to demonstrate how to use BubbleID to generate your own data. 
 
 ## Preliminary Setup:
 1. Clone this github repo
