@@ -7,9 +7,13 @@
 ---
 
 
-This package is for analyzing boiling images and is from the paper: [**BubbleID:A deep learning framework for bubble interface dynamics analysis**](https://pubs.aip.org/aip/jap/article/136/1/014902/3300686/BubbleID-A-deep-learning-framework-for-bubble). It combines tracking, segmentation, and classification models and is trained on manually labeled pool boiling data. It is used for departure classification, velocity interface prediction, bubble statistics extraction.
+This package is for analyzing pool boiling images and is from the paper: [**BubbleID:A deep learning framework for bubble interface dynamics analysis**](https://pubs.aip.org/aip/jap/article/136/1/014902/3300686/BubbleID-A-deep-learning-framework-for-bubble). It combines tracking, segmentation, and classification models and is trained on manually labeled pool boiling data. It is used for departure classification, velocity interface prediction, bubble statistics extraction.
 
 * This is an updated version of BubbleID for the past version please see here.
+
+<p align="center">
+  <img src="Data.jpg" alt="Example plots generated from framework" width="75%" />
+</p>
 
 ## Installation:
 Several packages are needed to 
@@ -17,15 +21,6 @@ Several packages are needed to
 ```bash
 pip install
 ```
-## Use Cases
-The BubbleID Framework can be used for analyzing pool boiling images to obtain bubble statistics. Examples of these are shown below:
-<p align="center">
-  <img src="Data.jpg" alt="Example plots generated from framework" width="75%" />
-</p>
-It can also be used for obtaining the novel interface velocity for a specific bubble as shown below:
-<p align="center">
-  <img src="velocityFigure.jpg" alt="Example Interface Velocity Figures" width="65%" />
-</p>
 
 ## Using the BubbleID Framework:
 The BubbleID framework has pretrained models for our in lab pool boiling images. This section goes over how to use these models to analyze image data. These models may need finetuning with your own data. More on this is provided later. 
@@ -73,3 +68,7 @@ You will need generate a yolo dataset. We did this through the use of labelme an
 Two files are provided to allow for training both the segmentation and classification model.
 1. TrainCNNClassification.ipynb
 2. TrainModel.ipynb
+
+3. <p align="center">
+  <img src="velocityFigure.jpg" alt="Example Interface Velocity Figures" width="65%" />
+</p>
