@@ -61,9 +61,7 @@ For convience, tutorials are provided to demonstrate how to use BubbleID to gene
      This provides codes for generating figures 
   3. Interface_Velocity.ipynb
      This file provides the code for determing and ploting the interface velocity of a single bubble.
-<p align="center">
-  <img src="velocityFigure.jpg" alt="Example Interface Velocity Figures" width="55%" />
-</p>
+
 
 ## Train your own model
 You will need generate a yolo dataset. We did this through the use of labelme and converted the generated json files to yolo datasets using the code found here: 
@@ -71,6 +69,6 @@ Two files are provided to allow for training both the segmentation and classific
 1. TrainCNNClassification.ipynb
 2. TrainModel.ipynb
 
-3. <p align="center">
+<p align="center">
   <img src="./Images/velocityFigure.jpg" alt="Example Interface Velocity Figures" width="65%" />
 </p>
