@@ -1,8 +1,4 @@
-<div align="center">
-  <img src="./bubbleidheader.png" alt="Logo" style="width: 85%; max-width: 100%;">
-</div>
-
----
+# BubbleID
 
 This framework is made for use in analyzing boiling images. It combines tracking, segmentation, and classification models and is trained on manually labeled pool boiling data. 
 It is used for departure classification, velocity interface prediction, bubble statistics extraction.
