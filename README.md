@@ -2,6 +2,8 @@
   <img src="./bubbleidheader.png" alt="Logo" style="width: 85%; max-width: 100%;">
 </div>
 
+[![bpaper](https://img.shields.io/badge/Paper-BubbleID-purple)](https://pubs.aip.org/aip/jap/article/136/1/014902/3300686/BubbleID-A-deep-learning-framework-for-bubble)
+
 ---
 
 
