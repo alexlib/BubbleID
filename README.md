@@ -1,5 +1,5 @@
 <div align="center">  
-  <img src="./bubbleidheader.png" alt="Logo" style="width: 85%; max-width: 100%;">
+  <img src="./Images/header.png" alt="Logo" style="width: 85%; max-width: 100%;">
 </div>
 
 [![boldv](https://img.shields.io/badge/tag-v1.0.0-blue)](https://github.com/cldunlap73/BubbleID/tree/v1.0.0)
