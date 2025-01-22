@@ -60,4 +60,7 @@ For the model both an avi video and corresponding .jpg images of each frame must
 4. See Using the BubbleID Framework but use your new model weights
    
 
+<p align="center">
+  <img src="./Images/velocityFigure.jpg" alt="Example plots generated from framework" width="67%" />
+</p>
 
