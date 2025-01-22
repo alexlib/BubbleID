@@ -18,11 +18,24 @@ This package is for analyzing pool boiling images and is from the paper: [**Bubb
 * This is an updated version of BubbleID for the past version please see [here](https://github.com/cldunlap73/BubbleID/tree/v1.0.0).
 
 ## Installation:
-Several packages are needed to 
 
-```bash
-pip install
-```
+* First download and install the latest [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
+* Create a new enviroment with python 3.10, we used anaconda
+* Update dependences:
+  ```bash
+  pip install --upgrade pip setuptools wheel
+  ```
+* Install [detectron2](https://github.com/facebookresearch/detectron2):
+  ```bash
+  pip install git+https://github.com/facebookresearch/detectron2
+  ```
+* Install Additional Dependencies:
+  ```bash
+  pip install numpy==1.23 opencv-python filterpy super-gradients
+* Install BubbleID:
+  ```bash
+  pip install bubbleid
+  ```
 
 ## Using the BubbleID Framework:
 The BubbleID framework has pretrained models for our in lab pool boiling images. This section goes over how to use these models to analyze image data. These models may need finetuning with your own data. More on this is provided later. 
