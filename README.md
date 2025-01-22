@@ -42,7 +42,7 @@ The BubbleID framework has pretrained models for our in lab pool boiling images.
 
 |Model|Weights|Description|
 |----|-------|----------|
-|Instance Segmentation|Link|Model weights for the instance segmentation model.|
+|Instance Segmentation|[Link](https://osf.io/uy2ad)|Model weights for the instance segmentation model.|
 |Classification|Link|Model weights for the departure classification model.|
 
 For the model both an avi video and corresponding .jpg images of each frame must be provided.
