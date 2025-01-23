@@ -22,10 +22,18 @@ This package is for analyzing pool boiling images and is from the paper: [**Bubb
 ## Installation:
 
 * First download and install the latest [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
-* Create a new enviroment with python 3.10, we used anaconda
-* Update dependences:
+* Create a new environment with python 3.10, we used anaconda
+* Ensure git is installed, we used anaconda:
+  ```bash
+  conda install anaconda::git
+  ```
+* Update dependencies:
   ```bash
   pip install --upgrade pip setuptools wheel
+  ```
+* Install [pytorch](https://pytorch.org/) (Make sure cuda version matches if using gpu):
+  ```bash
+  pip3 install torch torchvision torchaudio
   ```
 * Install [detectron2](https://github.com/facebookresearch/detectron2):
   ```bash
