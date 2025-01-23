@@ -53,7 +53,7 @@ Install BubbleID:
 ## Using the BubbleID Framework:
 
 <p align="center">
-  <img src="./Images/bubbleidclass.png" alt="class" width="80%" />
+  <img src="./Images/bubbleidclass.png" alt="class" width="90%" />
 </p>
 
 1.  **Data Preperation**: Data from pool boiling experiments must be saved as a video (.AVI) file and individual images (.JPG) for each frame. 
