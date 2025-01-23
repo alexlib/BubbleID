@@ -18,7 +18,7 @@ This package is for analyzing pool boiling images and is from the paper: [**Bubb
   <img src="./Images/Data.jpg" alt="Example plots generated from framework" width="80%" />
 </p>
 
-* This is an updated version of BubbleID for the past version please see [here](https://github.com/cldunlap73/BubbleID/tree/v1.0.0).
+This is an updated version of BubbleID for the past version please see [here](https://github.com/cldunlap73/BubbleID/tree/v1.0.0).
 
 ## Installation:
 
