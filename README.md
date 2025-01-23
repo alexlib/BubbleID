@@ -56,11 +56,17 @@ The BubbleID framework has pretrained models for our in lab pool boiling images.
 |Instance Segmentation|[Link](https://osf.io/uy2ad)|Model weights for the instance segmentation model.|
 |Classification|Link|Model weights for the departure classification model.|
 
-For the model both an avi video and corresponding .jpg images of each frame must be provided.
+For the model, both an avi video and corresponding .jpg images of each frame must be provided.
 
 ## Tutorials
-* For convience, tutorials are provided in the github to demonstrate how to use BubbleID to generate your own data.
-* The tutorials use the testing data found here: [![data1](https://img.shields.io/badge/testing%20data-red)](https://osf.io/3nwyx/)
+* For convenience, tutorials are provided in the github to demonstrate how to use BubbleID to generate your own data.
+  
+  |Download Steady State Tutorial And Data Zip|
+  |--------------------------------------|
+
+  |Download Transient Tutorial and Data Zip|
+  |------------------------------------|
+
 
 ## Training your own model:
 1. Annotate image data, Lableme was used for our dataset.
