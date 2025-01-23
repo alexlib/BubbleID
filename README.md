@@ -45,6 +45,7 @@ Install [detectron2](https://github.com/facebookresearch/detectron2):
 Install Additional Dependencies:
   ```bash
   pip install numpy==1.23 opencv-python filterpy super-gradients
+```
 Install BubbleID:
   ```bash
   pip install bubbleid
