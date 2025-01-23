@@ -75,7 +75,7 @@ Install BubbleID:
 ## Tutorials
 * For convenience, tutorials are provided in the github to demonstrate how to use BubbleID to generate your own BubbleID results. There are also tutorials zipped with data to ease the process of running them. Both tutorials exist as .py and .ipynb files.
   
-  |Download Steady State Tutorial And Data Zip|
+  |[Download Steady State Tutorial And Data Zip](https://osf.io/axts7)|
   |--------------------------------------|
 
   |Download Transient Tutorial and Data Zip|
