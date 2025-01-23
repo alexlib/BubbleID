@@ -59,7 +59,7 @@ The BubbleID framework has pretrained models for our in lab pool boiling images.
 For the model, both an avi video and corresponding .jpg images of each frame must be provided.
 
 ## Tutorials
-* For convenience, tutorials are provided in the github to demonstrate how to use BubbleID to generate your own data.
+* For convenience, tutorials are provided in the github to demonstrate how to use BubbleID to generate your own BubbleID results. There are also tutorials zipped with data to ease the process of running them. Both tutorials exist as .py and .ipynb files.
   
   |Download Steady State Tutorial And Data Zip|
   |--------------------------------------|
