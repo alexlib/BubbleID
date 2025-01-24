@@ -1,20 +1,14 @@
-.. ReadTheDocs-BubbleID documentation master file, created by
-   sphinx-quickstart on Fri Jan 24 10:15:08 2025.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. My Project Documentation
 
-BubbleID documentation
-==================================
+Welcome to BubbleID documentation!
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
+This project is designed to...
 
+Contents:
 
 .. toctree::
    :maxdepth: 2
-   :caption: Table of Contents:
+   :caption: Table of Contents
 
    installation
    modules
-
