@@ -29,3 +29,5 @@ extensions = [
 html_theme = 'sphinx_rtd_theme'
 html_title = 'BubbleID'
 html_static_path = ['_static']
+
+html_css_files=['custom.css']
