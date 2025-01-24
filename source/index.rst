@@ -1,7 +1,6 @@
-.. My Project Documentation
-
 BubbleID Documentation
 ======================
+
 Welcome to BubbleID documentation!
 
 This project is designed to...
