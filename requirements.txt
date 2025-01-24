@@ -1,1 +1,0 @@
-spinx-rtd-them==1.3.0
