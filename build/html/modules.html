@@ -45,10 +45,7 @@
               <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">BubbleID Module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#class-dataanalysis">class DataAnalysis</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">BubbleID Module</a></li>
 </ul>
 
         </div>
@@ -77,13 +74,12 @@
              
   <section id="bubbleid-module">
 <h1>BubbleID Module<a class="headerlink" href="#bubbleid-module" title="Link to this heading"></a></h1>
-<section id="class-dataanalysis">
-<h2>class DataAnalysis<a class="headerlink" href="#class-dataanalysis" title="Link to this heading"></a></h2>
+<p><strong>class</strong> <span class="red">DataAnalysis</span></p>
 <p>This class is for generating and analyzing data from a single pool boiling experiment or specific video from an experiment.</p>
 <blockquote>
 <div><dl class="simple">
-<dt>__init__(thres, imagesfolder,videopath,savefolder,extension,modelweightsloc, device)</dt><dd><dl class="simple">
-<dt><span class="red">Parameters:</span></dt><dd><ul class="simple">
+<dt><span class="red">__init__(…)</span></dt><dd><dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
 <li><p>imagesfolder: path to folder where .jpg images are saved</p></li>
 <li><p>videopath: path to where .avi video is saved</p></li>
 <li><p>savefolder: path to folder where all data will be saved</p></li>
@@ -94,12 +90,12 @@
 </dd>
 </dl>
 </dd>
-<dt>GenerateData(thres)</dt><dd><dl class="simple">
-<dt><span class="red">Parameter:</span></dt><dd><ul class="simple">
+<dt><span class="red">GenerateData(…)</span></dt><dd><dl class="simple">
+<dt>Parameter:</dt><dd><ul class="simple">
 <li><p>thres: Value between 0 and 1 that specifies the cut off of confidence of detected bubbles that are kept</p></li>
 </ul>
 </dd>
-<dt><span class="red">Output:</span></dt><dd><ul class="simple">
+<dt>Output:</dt><dd><ul class="simple">
 <li><p>bb-Boiling-output-{extension}.txt: File containing the coordinates of the bounding boxes of the detected bubbles and the confidence.</p></li>
 <li><p>vapor_{extension}.npy: Numpy file containing the count of pixels containing a bubble. This file can be used for approximating vapor faction.</p></li>
 <li><p>bubble_size_bt-{extension}.npy: Numpy file containing the number of pixels each detected bubble consists of for each frame. This can be used to determine bubble count and size.</p></li>
@@ -109,26 +105,26 @@
 </dd>
 </dl>
 </dd>
-<dt>Plotvf()</dt><dd><dl class="simple">
-<dt><span class="red">Output:</span></dt><dd><ul class="simple">
+<dt><span class="red">Plotvf()</span></dt><dd><dl class="simple">
+<dt>Output:</dt><dd><ul class="simple">
 <li><p>vaporfig_{extension}.npy: Plot of vapor fraction over the duration of frames along with the rolling sample average</p></li>
 </ul>
 </dd>
 </dl>
 </dd>
-<dt>Plotbc()</dt><dd><dl class="simple">
-<dt><span class="red">Output:</span></dt><dd><ul class="simple">
+<dt><span class="red">Plotbc()</span></dt><dd><dl class="simple">
+<dt>Output:</dt><dd><ul class="simple">
 <li><p>bcfig_{extension}.npy: Plot of the bubble count over the duration of frames and rolling sample average</p></li>
 </ul>
 </dd>
 </dl>
 </dd>
-<dt>PlotInterfaceVelocity(bubble)</dt><dd><dl class="simple">
-<dt><span class="red">Parameter:</span></dt><dd><ul class="simple">
+<dt><span class="red">PlotInterfaceVelocity(…)</span></dt><dd><dl class="simple">
+<dt>Parameter:</dt><dd><ul class="simple">
 <li><p>bubble: index of the bubble to find the interface velocity.</p></li>
 </ul>
 </dd>
-<dt><span class="red">Output:</span></dt><dd><ul class="simple">
+<dt>Output:</dt><dd><ul class="simple">
 <li><p>displays an image of the frame and bubble contour to check if this is the intended bubble</p></li>
 <li><p>velocity_{extension}_{bubble}.png: Figure of the interface velocity along the bubble contour vs frames bubble is present in. This figure has been smoothed with a gaussian filter and has a range of -30 to 30. This function is best used with higher framerates (i.e. 3000 fps) and larger bubbles.</p></li>
 </ul>
@@ -137,7 +133,6 @@
 </dd>
 </dl>
 </div></blockquote>
-</section>
 </section>
 
 
