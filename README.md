@@ -53,7 +53,7 @@ Install BubbleID:
   ```
 
 ## Using the BubbleID Framework:
-
+For in depth description of functions available please view the [read the docs](https://bubbleid.readthedocs.io/en/latest/index.html) page.
 <p align="center">
   <img src="./Images/bubbleidframework.png" alt="class" width="90%" />
 </p>
