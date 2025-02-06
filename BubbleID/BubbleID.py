@@ -52,6 +52,39 @@ from tqdm import tqdm
 import cv2
 import numpy as np
 
+import torch, detectron2
+from detectron2.utils.logger import setup_logger
+setup_logger()
+from detectron2.data import transforms as T
+# import some common libraries
+import numpy as np
+import os, json, cv2, random
+
+# import some common detectron2 utilities
+from detectron2 import model_zoo, structures
+from detectron2.engine import DefaultPredictor
+from detectron2.config import get_cfg
+from detectron2.utils.visualizer import Visualizer
+from detectron2.data import MetadataCatalog, DatasetCatalog, DatasetMapper
+
+from detectron2.data.datasets import register_coco_instances
+from detectron2.engine import DefaultTrainer
+
+from detectron2.data import detection_utils as utils
+import detectron2.data.transforms as T
+import copy
+import torch
+
+from detectron2.engine import DefaultTrainer
+from detectron2.data import build_detection_test_loader, build_detection_train_loader
+
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import DataLoader
+from torchvision import datasets, transforms, models
+import os
+
 # Define Helper Functions
 def get_image_paths(directory):
     image_extensions = ['*.jpg']  # Add more extensions as needed
@@ -760,3 +793,191 @@ class DataAnalysis:
         plt.show()
 
 
+def TrainSegmentationModel(datapath,):
+    register_coco_instances("my_dataset_train", {}, datapath, "")
+    train_metadata = MetadataCatalog.get("my_dataset_train")
+    train_dataset_dicts = DatasetCatalog.get("my_dataset_train")
+
+    cfg = get_cfg()
+    cfg.OUTPUT_DIR = "./Models"
+    cfg.merge_from_file(model_zoo.get_config_file("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml"))
+    cfg.DATASETS.TRAIN = ("my_dataset_train",)
+    cfg.DATASETS.TEST = ()
+    cfg.DATALOADER.NUM_WORKERS = 2
+    cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url(
+        "COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml")  # Let training initialize from model zoo
+    # cfg.MODEL.WEIGHTS = os.path.join(cfg.OUTPUT_DIR, "model_final_MATLAB1.pth")  # path to the model we just trained
+    cfg.SOLVER.IMS_PER_BATCH = 2  # This is the real "batch size" commonly known to deep learning people
+    cfg.SOLVER.BASE_LR = 0.00025  # pick a good LR
+    cfg.SOLVER.MAX_ITER = 1000  # 1000 iterations seems good enough for this dataset
+    cfg.SOLVER.STEPS = []  # do not decay learning rate
+    cfg.MODEL.ROI_HEADS.BATCH_SIZE_PER_IMAGE = 256  # Default is 512, using 256 for this dataset.
+    cfg.MODEL.ROI_HEADS.NUM_CLASSES = 1  # We have 1 classes.
+    # NOTE: this config means the number of classes, without the background. Do not use num_classes+1 here.
+
+    os.makedirs(cfg.OUTPUT_DIR, exist_ok=True)
+
+    def custom_mapper(dataset_dict,savename):
+        dataset_dict = copy.deepcopy(dataset_dict)  # it will be modified by code below
+        image = utils.read_image(dataset_dict["file_name"], format="BGR")
+
+        mean = 0
+        std_dev = 25
+        gaussian_noise = np.random.normal(mean, std_dev, image.shape).astype(np.uint8)
+        # noisy_image = cv2.add(image, gaussian_noise)
+
+        transform_list = [
+            # T.Resize((800,600)),
+            T.RandomBrightness(0.8, 1.8),
+            T.RandomContrast(0.6, 1.3),
+            T.RandomSaturation(0.8, 1.4),
+            # T.RandomRotation(angle=[90, 90]),
+            # T.RandomNoise(mean=0.0, std=0.1),
+            T.RandomLighting(0.7),
+            T.RandomFlip(prob=0.4, horizontal=True, vertical=False),
+        ]
+        image, transforms = T.apply_transform_gens(transform_list, image)
+        dataset_dict["image"] = torch.as_tensor(image.transpose(2, 0, 1).astype("float32"))
+
+        annos = [
+            utils.transform_instance_annotations(obj, transforms, image.shape[:2])
+            for obj in dataset_dict.pop("annotations")
+            if obj.get("iscrowd", 0) == 0
+        ]
+        instances = utils.annotations_to_instances(annos, image.shape[:2])
+        dataset_dict["instances"] = utils.filter_empty_instances(instances)
+        return dataset_dict
+
+    class CustomTrainer(DefaultTrainer):
+        @classmethod
+        def build_train_loader(cls, cfg):
+            return build_detection_train_loader(cfg, mapper=custom_mapper)
+
+    trainer = CustomTrainer(cfg)
+    trainer.resume_or_load(resume=False)
+
+    trainer.train()  # Start the training process
+
+    cfg.MODEL.WEIGHTS = os.path.join(cfg.OUTPUT_DIR, savename)  # path to the model we just trained
+    cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5  # set a custom testing threshold
+    predictor = DefaultPredictor(cfg)
+
+
+def TrainCNNClassification(savename):
+    # Set device
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    # Define transforms for data augmentation and normalization
+    data_transforms = {
+        'train': transforms.Compose([
+            transforms.RandomResizedCrop((480, 640)),
+            transforms.RandomHorizontalFlip(),
+            transforms.ToTensor(),
+            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+        ]),
+        'val': transforms.Compose([
+            # transforms.Resize(256),
+            transforms.CenterCrop((480, 640)),
+            transforms.ToTensor(),
+            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+        ]),
+    }
+
+    # Set data directory
+    data_dir = './output'
+
+    # Create datasets
+    image_datasets = {x: datasets.ImageFolder(os.path.join(data_dir, x), data_transforms[x]) for x in ['train', 'val']}
+
+    # Create dataloaders
+    dataloaders = {x: DataLoader(image_datasets[x], batch_size=4, shuffle=True, num_workers=4) for x in
+                   ['train', 'val']}
+
+    # Get dataset sizes
+    dataset_sizes = {x: len(image_datasets[x]) for x in ['train', 'val']}
+
+    # Define CNN model
+    class CNN(nn.Module):
+        def __init__(self):
+            super(CNN, self).__init__()
+            self.features = nn.Sequential(
+                nn.Conv2d(3, 64, kernel_size=6, padding=1),
+                nn.ReLU(inplace=True),
+                nn.MaxPool2d(kernel_size=2, stride=2),
+                nn.Conv2d(64, 128, kernel_size=6, padding=1),
+                nn.ReLU(inplace=True),
+                nn.MaxPool2d(kernel_size=2, stride=2),
+                nn.Conv2d(128, 256, kernel_size=3, padding=1),
+                nn.ReLU(inplace=True),
+                nn.MaxPool2d(kernel_size=2, stride=2)
+            )
+            self.avgpool = nn.AdaptiveAvgPool2d((7, 7))
+            self.classifier = nn.Sequential(
+                nn.Linear(256 * 7 * 7, 512),
+                nn.ReLU(inplace=True),
+                nn.Dropout(0.5),
+                nn.Linear(512, 2)
+            )
+
+        def forward(self, x):
+            x = self.features(x)
+            x = self.avgpool(x)
+            x = torch.flatten(x, 1)
+            x = self.classifier(x)
+            return x
+
+    # Initialize the model
+    model = CNN().to(device)
+
+    # Define loss function and optimizer
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
+
+    # Initialize variables to keep track of best accuracy and corresponding model weights
+    best_accuracy = 0.0
+    best_model_weights = None
+
+    # Training loop
+    num_epochs = 10
+    for epoch in range(num_epochs):
+        for phase in ['train', 'val']:
+            if phase == 'train':
+                model.train()
+            else:
+                model.eval()
+
+            running_loss = 0.0
+            running_corrects = 0
+
+            for inputs, labels in dataloaders[phase]:
+                inputs = inputs.to(device)
+                labels = labels.to(device)
+
+                optimizer.zero_grad()
+
+                with torch.set_grad_enabled(phase == 'train'):
+                    outputs = model(inputs)
+                    _, preds = torch.max(outputs, 1)
+                    loss = criterion(outputs, labels)
+
+                    if phase == 'train':
+                        loss.backward()
+                        optimizer.step()
+
+                running_loss += loss.item() * inputs.size(0)
+                running_corrects += torch.sum(preds == labels.data)
+
+            epoch_loss = running_loss / dataset_sizes[phase]
+            epoch_acc = running_corrects.double() / dataset_sizes[phase]
+
+            print(f'{phase} Loss: {epoch_loss:.4f} Acc: {epoch_acc:.4f}')
+
+            # Check if current phase is validation and if current accuracy is better than the best accuracy
+            if phase == 'val' and epoch_acc > best_accuracy:
+                best_accuracy = epoch_acc
+                # Save the model weights
+                best_model_weights = model.state_dict()
+
+    # Save the best model weights
+    torch.save(best_model_weights, savename)
+    print("Training complete!")
