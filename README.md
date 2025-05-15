@@ -68,7 +68,7 @@ For in depth description of functions available please view the [read the docs](
       |Model|Weights|Description|
       |----|-------|----------|
       |Instance Segmentation|[Link](https://osf.io/uy2ad)|Model weights for the instance segmentation model.|
-      |Classification|[Link](https://drive.google.com/drive/folders/1eYMW9USX0ZRKDDR8WR__xRAlfMNwCIw7?usp=sharing)|Model weights for the departure classification model.|
+      |Classification|[Link](https://osf.io/c76w2)|Model weights for the departure classification model.|
   
     * Define the device you will be running on; either "cpu" or "gpu"
 3. **GenerateData Function**: When you call the generate data function multiple files are generated and saved in the defined save folder. Each file will contain the extension set previously. This function must be ran prior to the data visualization functions.
