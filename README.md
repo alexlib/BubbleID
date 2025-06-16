@@ -84,7 +84,7 @@ For in depth description of functions available please view the [read the docs](
 
 ## Training your own model:
 1. Annotate image data, Lableme was used for our dataset. Find our annotated data [here](https://osf.io/3nwyx/).
-2. Convert labelme dataset to yolo format
+2. Convert labelme dataset to coco format
 3. Run training
 4. See Using the BubbleID Framework but use your new model weights
    
