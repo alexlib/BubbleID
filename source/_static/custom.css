@@ -1,0 +1,17 @@
+/* Make h2 smaller */
+h2 {
+    font-size: 1.1em; /* Adjust the size */
+    font-weight: normal;
+    color: black;
+}
+
+/* Make h3 smaller */
+h3 {
+    font-size: 0.9em; /* Adjust the size */
+    font-weight: normal;
+    color: #FF5733;
+}
+
+.red {
+    color:red;
+}

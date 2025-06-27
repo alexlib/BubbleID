@@ -2,62 +2,95 @@
   <img src="./Images/header.png" alt="Logo" style="width: 85%; max-width: 100%;">
 </div>
 
+[![bdocs](https://img.shields.io/readthedocs/bubbleid)](https://bubbleid.readthedocs.io/en/latest/index.html)
 [![bpypiv](https://img.shields.io/pypi/v/bubbleid)](https://pypi.org/project/bubbleid/)
 ![bpyv](https://img.shields.io/badge/python-3.10-blue)
 [![boldv](https://img.shields.io/badge/tag-v1.0.0-blue)](https://github.com/cldunlap73/BubbleID/tree/v1.0.0)
 [![blicense](https://img.shields.io/github/license/cldunlap73/seqreg)](https://github.com/cldunlap73/BubbleID/blob/main/LICENSE)
+[![bdata](https://img.shields.io/badge/osf%20storage-red)](https://osf.io/3nwyx/)
 [![bpaper](https://img.shields.io/badge/paper-BubbleID-purple)](https://pubs.aip.org/aip/jap/article/136/1/014902/3300686/BubbleID-A-deep-learning-framework-for-bubble)
 
 ---
 
 
-This package is for analyzing pool boiling images and is from the paper: [**BubbleID:A deep learning framework for bubble interface dynamics analysis**](https://pubs.aip.org/aip/jap/article/136/1/014902/3300686/BubbleID-A-deep-learning-framework-for-bubble). It combines tracking, segmentation, and classification models and is trained on manually labeled pool boiling data. It is used for departure classification, velocity interface prediction, bubble statistics extraction.
+This package is for analyzing pool boiling images and is from the paper: [**BubbleID:A deep learning framework for bubble interface dynamics analysis**](https://pubs.aip.org/aip/jap/article/136/1/014902/3300686/BubbleID-A-deep-learning-framework-for-bubble). It combines tracking, segmentation, and classification models and is trained on manually labeled pool boiling data. It is used for departure classification, velocity interface prediction, bubble statistics extraction. It is built on ocsort and detectron2. 
 
 <p align="center">
   <img src="./Images/Data.jpg" alt="Example plots generated from framework" width="80%" />
 </p>
 
-* This is an updated version of BubbleID for the past version please see [here](https://github.com/cldunlap73/BubbleID/tree/v1.0.0).
+This is an updated version of BubbleID for the past version please see [here](https://github.com/cldunlap73/BubbleID/tree/v1.0.0).
 
 ## Installation:
 
-* First download and install the latest [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
-* Create a new enviroment with python 3.10, we used anaconda
-* Update dependences:
+First download and install the latest [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
+
+Create a new environment with python 3.10, we used anaconda
+
+Ensure git is installed, we used anaconda:
+  ```bash
+  conda install anaconda::git
+  ```
+Update dependencies:
   ```bash
   pip install --upgrade pip setuptools wheel
   ```
-* Install [detectron2](https://github.com/facebookresearch/detectron2):
+Install [pytorch](https://pytorch.org/) (Make sure cuda version matches if using gpu):
+  ```bash
+  pip3 install torch torchvision torchaudio
+  ```
+Install [detectron2](https://github.com/facebookresearch/detectron2):
   ```bash
   pip install git+https://github.com/facebookresearch/detectron2
   ```
-* Install Additional Dependencies:
+Install Additional Dependencies:
   ```bash
   pip install numpy==1.23 opencv-python filterpy super-gradients
-* Install BubbleID:
+```
+Install BubbleID:
   ```bash
   pip install bubbleid
   ```
 
 ## Using the BubbleID Framework:
-The BubbleID framework has pretrained models for our in lab pool boiling images. This section goes over how to use these models to analyze image data. These models may need finetuning with your own data. More on this is provided later. 
+For in depth description of functions available please view the [read the docs](https://bubbleid.readthedocs.io/en/latest/index.html) page.
+<p align="center">
+  <img src="./Images/bubbleidframework.png" alt="class" width="90%" />
+</p>
 
-|Model|Weights|Description|
-|----|-------|----------|
-|Instance Segmentation|[Link](https://osf.io/uy2ad)|Model weights for the instance segmentation model.|
-|Classification|Link|Model weights for the departure classification model.|
+1.  **Data Preperation**: Data from pool boiling experiments must be saved as a video (.AVI) file and individual images (.JPG) for each frame. 
+2.  **AnalyzeData Class**: The BubbleID frame work is set up as a class. You first instantiate a class for the experimental data you want. 
 
-For the model both an avi video and corresponding .jpg images of each frame must be provided.
+    * Define the location of the saved boiling video and images. 
+    * Also define the folder you want all the data to be saved in and the extension you want each file to be saved with. 
+    * Define the location of the model weights you will be using. The BubbleID framework has pretrained models for our in lab pool boiling images. This section goes over how to use these models to analyze image data. These models may need finetuning with your own data. More on this is provided later.
+
+      |Model|Weights|Description|
+      |----|-------|----------|
+      |Instance Segmentation (BubbleID <= 0.0.7|[Link](https://osf.io/uy2ad)|Model weights for the instance segmentation model.|
+      |Instance Segmentation (BubbleID >= 0.0.8|[Link](https://osf.io/9azdx)|Updated Model Weights for instance segmentation model.|
+      |Classification|[Link](https://osf.io/c76w2)|Model weights for the departure classification model.|
+  
+    * Define the device you will be running on; either "cpu" or "gpu"
+3. **GenerateData Function**: When you call the generate data function multiple files are generated and saved in the defined save folder. Each file will contain the extension set previously. This function must be ran prior to the data visualization functions.
+4. **Data Visualization**: There are several functions within the class that can be called to save and display plots of the data generated by the segmentation and tracking models. These include ploting vapor fraction, bubble count, and interface velocity. 
 
 ## Tutorials
-* For convience, tutorials are provided in the github to demonstrate how to use BubbleID to generate your own data.
-* The tutorials use the testing data found here: [![data1](https://img.shields.io/badge/testing%20data-red)](https://osf.io/3nwyx/)
+* For convenience, a tutorial is provided in the github to demonstrate how to use BubbleID to generate your own BubbleID results. The tutorial is zipped with data for running it. Different types of analysis is permitted based on the frame rate of the videos. For higher frame rates (>600fps) the tracking model can be used for analysis (e.g., interface velocity, departure, etc.). For lower frame rates, only information from each frame can be extracted (e.g., bubble count, size, vapor fraction).
+  
+  |[Download High Frame Rate Tutorial And Data Zip](https://osf.io/axts7)|
+  |--------------------------------------|
+
+
 
 ## Training your own model:
-1. Annotate image data, Lableme was used for our dataset.
-2. Convert labelme dataset to yolo format
+1. Annotate image data, Lableme was used for our dataset. Find our annotated data [here](https://osf.io/3nwyx/).
+2. Convert labelme dataset to coco format
 3. Run training
 4. See Using the BubbleID Framework but use your new model weights
    
 
+<p align="center">
+  <img src="./Images/velocityFigure.jpg" alt="Example plots generated from framework" width="67%" />
+</p>
 
