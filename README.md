@@ -67,7 +67,8 @@ For in depth description of functions available please view the [read the docs](
 
       |Model|Weights|Description|
       |----|-------|----------|
-      |Instance Segmentation|[Link](https://osf.io/uy2ad)|Model weights for the instance segmentation model.|
+      |Instance Segmentation (BubbleID <= 0.0.7|[Link](https://osf.io/uy2ad)|Model weights for the instance segmentation model.|
+      |Instance Segmentation (BubbleID >= 0.0.8|[Link](https://osf.io/9azdx)|Updated Model Weights for instance segmentation model.|
       |Classification|[Link](https://osf.io/c76w2)|Model weights for the departure classification model.|
   
     * Define the device you will be running on; either "cpu" or "gpu"
