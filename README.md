@@ -1,5 +1,5 @@
 <div align="center">  
-  <img src="./Images/header.png" alt="Logo" style="width: 85%; max-width: 100%;">
+  <img src="./Images/bubbleidheader.png" alt="Logo" style="width: 85%; max-width: 100%;">
 </div>
 
 [![bdocs](https://img.shields.io/readthedocs/bubbleid)](https://bubbleid.readthedocs.io/en/latest/index.html)
