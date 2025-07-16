@@ -25,7 +25,12 @@ This is an updated version of BubbleID for the past version please see [here](ht
 
 First download and install the latest [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
 
-Create a new environment with python 3.10, we used anaconda
+Create a new environment with python 3.10, we used [anaconda](https://www.anaconda.com/download)
+
+```bash
+conda create -n bubbleid python==3.10
+conda activate bubbleid
+```
 
 Ensure git is installed, we used anaconda:
   ```bash
