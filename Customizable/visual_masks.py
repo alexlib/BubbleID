@@ -12,7 +12,7 @@ from detectron2.data import MetadataCatalog, DatasetCatalog
 # Define Variables
 model_weights="./model_1class.pth"
 image_path=""
-
+device="cpu"
 
 cfg = get_cfg()
 cfg.OUTPUT_DIR = "./"
@@ -25,6 +25,7 @@ cfg.SOLVER.MAX_ITER = 1000    # 1000 iterations seems good enough for this datas
 cfg.SOLVER.STEPS = []        # do not decay learning rate
 cfg.MODEL.ROI_HEADS.BATCH_SIZE_PER_IMAGE = 256   # Default is 512, using 256 for this dataset.
 cfg.MODEL.ROI_HEADS.NUM_CLASSES = 1
+cfg.MODEL.DEVICE=device
 cfg.MODEL.WEIGHTS = os.path.join(cfg.OUTPUT_DIR, model_weights)  # path to the model we just trained
 cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.4   # set a custom testing threshold
 
