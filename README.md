@@ -9,7 +9,7 @@
 [![blicense](https://img.shields.io/github/license/cldunlap73/seqreg)](https://github.com/cldunlap73/BubbleID/blob/main/LICENSE)
 [![bdata](https://img.shields.io/badge/osf%20storage-red)](https://osf.io/3nwyx/)
 [![bpaper](https://img.shields.io/badge/paper-BubbleID-purple)](https://pubs.aip.org/aip/jap/article/136/1/014902/3300686/BubbleID-A-deep-learning-framework-for-bubble)
-
+[![bdroplet](https://img.shields.io/badge/droplets-yellow)](github.com/BubbleID-Droplet)
 ---
 
 
